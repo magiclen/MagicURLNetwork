@@ -71,6 +71,17 @@ If you are using REST API, you may need to make a HTTP DELETE request to delete 
 
 If you need to send your authorization(such as API key) in header, you can use **setAuthorization** method to set authorization.
 
+### Set User Agent(can be used to simulate a web broswer)
+
+If you want to set User Agent in header, you can use **setUserAgent** method to set User Agent. You can also find some built-in User Agent in **UserAgents** class which is in **MagicURLNetwork** class.
+
+For example, to simulate Android WebKit broswer to get my website,
+
+    final org.magiclen.magicurlnetwork.MagicURLNetwork network = org.magiclen.magicurlnetwork.MagicURLNetwork.GET("http://magiclen.org");
+    network.setUserAgent(org.magiclen.magicurlnetwork.MagicURLNetwork.UserAgents.ANDROID);
+    network.open();
+    System.out.println(network.getResultAsString());
+
 ### Set cookies
 
 In many cases, you have to use cookies to maintain the status of your network connection. You can use **setCookie** method to do this.
@@ -87,7 +98,7 @@ For example,
 
     final org.magiclen.magicurlnetwork.MagicURLNetwork network = org.magiclen.magicurlnetwork.MagicURLNetwork.GET("https://wordpress.org/latest.zip");
     network.setTargetFile(new File("/home/magiclen/wp.zip"));
-    network.setNetworkListener(new MagicURLNetwork.NetworkListener() {
+    network.setNetworkListener(new org.magiclen.magicurlnetwork.MagicURLNetwork.NetworkListener() {
 
         @Override
         public void onStarted() {
